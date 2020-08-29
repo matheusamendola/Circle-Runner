@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/matheusamendola/Desktop/iOS Apps/Projetos Pessoal/Circle Runner/Circle Runner/light.sks">
+   </FileRef>
+   <FileRef
       location = "self:Circle Runner.xcodeproj">
    </FileRef>
 </Workspace>
