@@ -8,16 +8,30 @@
 
 import SpriteKit
 import GameplayKit
-import CoreMotion
+
+enum Enemies:Int {
+    case small
+    case medium
+    case large
+}
 
 class GameScene: SKScene {
     
     var player: SKSpriteNode?
     
+    var yVelocity: Int = -300
+    
+    // MARK: - Entry Point
+    
     override func didMove(to view: SKView) {
         createPlayer()
-                
+        
+        self.run(SKAction.repeatForever(SKAction.sequence([SKAction.run {
+            self.spwanEnemies()
+            }, SKAction.wait(forDuration: 0.5)])))
     }
+    
+    // MARK: - Player
     
     func createPlayer(){
         player = SKSpriteNode(imageNamed: "player")
@@ -37,6 +51,53 @@ class GameScene: SKScene {
         light.position = CGPoint(x: 0, y: 0)
     }
     
+    // MARK: -
+    
+    func createEnemy(type:Enemies) -> SKShapeNode?{
+        let enemySprite = SKShapeNode()
+        enemySprite.name = "ENEMY"
+        
+        switch type {
+        case .small:
+            enemySprite.path = CGPath(rect: CGRect(x: 0, y: -10, width: 137, height: 30), transform: nil)
+            enemySprite.fillColor = UIColor(named: "Color02")!
+        case .medium:
+            enemySprite.path = CGPath(rect: CGRect(x: 0, y: -10, width: 182, height: 30), transform: nil)
+            enemySprite.fillColor = UIColor(named: "Color04")!
+        case .large:
+            enemySprite.path = CGPath(rect: CGRect(x: 0, y: -10, width: 242, height: 30), transform: nil)
+            enemySprite.fillColor = UIColor(named: "Color05")!
+
+        }
+        
+
+        let randomFloat = CGFloat.random(in: -255...100)
+        
+        enemySprite.position.x = randomFloat
+        enemySprite.position.y = 420
+
+
+        enemySprite.physicsBody = SKPhysicsBody(edgeLoopFrom: enemySprite.path!)
+
+        enemySprite.physicsBody?.velocity = CGVector(dx: 0, dy: yVelocity)
+        
+        return enemySprite
+    }
+    
+    func spwanEnemies () {
+                    
+        let randomEnemyType = Enemies(rawValue: GKRandomSource.sharedRandom().nextInt(upperBound: 3))!
+        if let newEnemy = createEnemy(type: randomEnemyType) {
+            self.addChild(newEnemy)
+        }
+            
+        self.enumerateChildNodes(withName: "ENEMY") { (node:SKNode, nil) in
+            if node.position.y < -430 || node.position.y > self.size.height + 150 {
+                node.removeFromParent()
+            }
+        }
+    }
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
             let location = touch.location(in: self)
@@ -55,6 +116,7 @@ class GameScene: SKScene {
         }
     }
 
+    //MARK: - Update
 
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
