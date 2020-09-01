@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import AudioToolbox
 
 enum Enemies:Int {
     case small
@@ -15,19 +16,26 @@ enum Enemies:Int {
     case large
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
+    
+    // MARK: Collision Categories
+    let playerCategory:UInt32 = 0x1 << 0
+    let enemyCategory:UInt32 = 0x1 << 1
     
     var player: SKSpriteNode?
     
     var yVelocity: Int = -300
-    
+    var backgroundNoise: SKAudioNode!
+    // MARK: - HUD Var
     var pause: SKSpriteNode?
     var scoreLabel: SKLabelNode?
     var currentScore: TimeInterval = 0{
         didSet{
             self.scoreLabel?.text = "\(Int(self.currentScore))"
+            GameHander.sharedInstance.score = (Int(self.currentScore))
         }
     }
+    
     // MARK: - Entry Point
     
     override func didMove(to view: SKView) {
@@ -35,9 +43,16 @@ class GameScene: SKScene {
         createHUD()
         lauchGameScore()
         
+        self.physicsWorld.contactDelegate = self
+        
         self.run(SKAction.repeatForever(SKAction.sequence([SKAction.run {
             self.spwanEnemies()
             }, SKAction.wait(forDuration: 0.5)])))
+        
+        if let musicURL = Bundle.main.url(forResource: "backgroud", withExtension: "mp3"){
+            backgroundNoise = SKAudioNode(url: musicURL)
+            addChild(backgroundNoise)
+        }
     }
     
     // MARK: - Player
@@ -46,6 +61,9 @@ class GameScene: SKScene {
         player = SKSpriteNode(imageNamed: "player")
         player?.physicsBody = SKPhysicsBody(circleOfRadius: player!.size.width / 2)
         player?.physicsBody?.linearDamping = 0
+        player?.physicsBody?.categoryBitMask = playerCategory
+        player?.physicsBody?.collisionBitMask = 0
+        player?.physicsBody?.contactTestBitMask = enemyCategory
         player?.position = CGPoint(x: 0, y: -265)
         self.addChild(player!)
         
@@ -87,15 +105,13 @@ class GameScene: SKScene {
 
         }
         
-
         let randomFloat = CGFloat.random(in: -255...100)
         
         enemySprite.position.x = randomFloat
         enemySprite.position.y = 420
 
-
         enemySprite.physicsBody = SKPhysicsBody(edgeLoopFrom: enemySprite.path!)
-
+        enemySprite.physicsBody?.categoryBitMask = enemyCategory
         enemySprite.physicsBody?.velocity = CGVector(dx: 0, dy: yVelocity)
         
         return enemySprite
@@ -153,10 +169,44 @@ class GameScene: SKScene {
             }
         }
     }
+    
+    func gameOver(){
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        GameHander.sharedInstance.saveGameStats()
+        print(GameHander.sharedInstance.score)
+        
+        let transition = SKTransition.fade(withDuration: 1)
+        if let gameOverScene = SKScene(fileNamed: "GameOverScene"){
+            gameOverScene.scaleMode = .aspectFit
+            self.view?.presentScene(gameOverScene, transition: transition)
+            //self.removeAllChildren()
+            self.removeFromParent()
+        }
+        
+    }
 
     //MARK: - Update
 
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        var playerBody:SKPhysicsBody
+        var otherBody:SKPhysicsBody
+        
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            playerBody = contact.bodyA
+            otherBody = contact.bodyB
+        }else{
+            playerBody = contact.bodyB
+            otherBody = contact.bodyA
+        }
+        
+        if playerBody.categoryBitMask == playerCategory && otherBody.categoryBitMask == enemyCategory {
+            gameOver()
+        }
+        
+        
     }
 }
