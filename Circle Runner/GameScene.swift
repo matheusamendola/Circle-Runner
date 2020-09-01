@@ -21,10 +21,18 @@ class GameScene: SKScene {
     
     var yVelocity: Int = -300
     
+    var scoreLabel: SKLabelNode?
+    var currentScore: TimeInterval = 0{
+        didSet{
+            self.scoreLabel?.text = "\(Int(self.currentScore))"
+        }
+    }
     // MARK: - Entry Point
     
     override func didMove(to view: SKView) {
         createPlayer()
+        createHUD()
+        lauchGameScore()
         
         self.run(SKAction.repeatForever(SKAction.sequence([SKAction.run {
             self.spwanEnemies()
@@ -49,6 +57,13 @@ class GameScene: SKScene {
         light.particleSize = playerSize!
         player?.addChild(light)
         light.position = CGPoint(x: 0, y: 0)
+    }
+    
+    func createHUD(){
+        scoreLabel = self.childNode(withName: "score") as? SKLabelNode
+        
+        currentScore = 0
+        
     }
     
     // MARK: -
@@ -91,11 +106,19 @@ class GameScene: SKScene {
             self.addChild(newEnemy)
         }
             
+        //Remove inimigos quando sai da tela
         self.enumerateChildNodes(withName: "ENEMY") { (node:SKNode, nil) in
             if node.position.y < -430 || node.position.y > self.size.height + 150 {
                 node.removeFromParent()
             }
         }
+    }
+    
+    func lauchGameScore(){
+        let timeAction = SKAction.repeatForever(SKAction.sequence([SKAction.run {
+            self.currentScore += 1
+            }, SKAction.wait(forDuration: 1)]))
+        scoreLabel?.run(timeAction)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

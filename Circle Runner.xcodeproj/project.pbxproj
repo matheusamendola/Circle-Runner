@@ -16,6 +16,9 @@
 		E04AAAEC24FACE6C00949C2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E04AAAEA24FACE6C00949C2D /* Assets.xcassets */; };
 		E04AAAF224FACFB700949C2D /* light.sks in Resources */ = {isa = PBXBuildFile; fileRef = E04AAAF124FACFA600949C2D /* light.sks */; };
 		E04AAAF524FAF3CF00949C2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E04AAAF424FAF3CF00949C2D /* Assets.xcassets */; };
+		E0753DB724FEA4E300F3EAD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0753DB524FEA4E300F3EAD3 /* Assets.xcassets */; };
+		E0753DB924FEA54500F3EAD3 /* pulse.sks in Resources */ = {isa = PBXBuildFile; fileRef = E0753DB824FEA54100F3EAD3 /* pulse.sks */; };
+		E0753DBC24FEA75400F3EAD3 /* GameHander.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0753DBB24FEA75400F3EAD3 /* GameHander.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		E04AAAEA24FACE6C00949C2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E04AAAF124FACFA600949C2D /* light.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = light.sks; path = "/Users/matheusamendola/Desktop/iOS Apps/Projetos Pessoal/Circle Runner/Circle Runner/light.sks"; sourceTree = "<absolute>"; };
 		E04AAAF424FAF3CF00949C2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		E0753DB524FEA4E300F3EAD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E0753DB824FEA54100F3EAD3 /* pulse.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = pulse.sks; path = "/Users/matheusamendola/Desktop/iOS Apps/Projetos Pessoal/Circle Runner/Circle Runner/pulse.sks"; sourceTree = "<absolute>"; };
+		E0753DBB24FEA75400F3EAD3 /* GameHander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameHander.swift; path = "/Users/matheusamendola/Desktop/iOS Apps/Projetos Pessoal/Circle Runner/Circle Runner/GameHander.swift"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,11 +69,14 @@
 		E04AAACE24FAB6C400949C2D /* Circle Runner */ = {
 			isa = PBXGroup;
 			children = (
+				E0753DBB24FEA75400F3EAD3 /* GameHander.swift */,
 				E04AAACF24FAB6C400949C2D /* AppDelegate.swift */,
 				E04AAAD724FAB6C400949C2D /* GameViewController.swift */,
 				E04AAAD124FAB6C400949C2D /* GameScene.sks */,
 				E04AAAD524FAB6C400949C2D /* GameScene.swift */,
+				E0753DB524FEA4E300F3EAD3 /* Assets.xcassets */,
 				E04AAAF124FACFA600949C2D /* light.sks */,
+				E0753DB824FEA54100F3EAD3 /* pulse.sks */,
 				E04AAAD924FAB6C400949C2D /* Main.storyboard */,
 				E04AAAF424FAF3CF00949C2D /* Assets.xcassets */,
 				E04AAADE24FAB6C600949C2D /* LaunchScreen.storyboard */,
@@ -135,10 +144,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E04AAADB24FAB6C400949C2D /* Main.storyboard in Resources */,
+				E0753DB924FEA54500F3EAD3 /* pulse.sks in Resources */,
 				E04AAAD224FAB6C400949C2D /* GameScene.sks in Resources */,
 				E04AAAF224FACFB700949C2D /* light.sks in Resources */,
 				E04AAAE024FAB6C600949C2D /* LaunchScreen.storyboard in Resources */,
 				E04AAAF524FAF3CF00949C2D /* Assets.xcassets in Resources */,
+				E0753DB724FEA4E300F3EAD3 /* Assets.xcassets in Resources */,
 				E04AAAEC24FACE6C00949C2D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +164,7 @@
 				E04AAAD624FAB6C400949C2D /* GameScene.swift in Sources */,
 				E04AAAD824FAB6C400949C2D /* GameViewController.swift in Sources */,
 				E04AAAD024FAB6C400949C2D /* AppDelegate.swift in Sources */,
+				E0753DBC24FEA75400F3EAD3 /* GameHander.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

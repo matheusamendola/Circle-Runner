@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/matheusamendola/Desktop/iOS Apps/Projetos Pessoal/Circle Runner/Circle Runner/light.sks">
+      location = "group:/Users/matheusamendola/Desktop/iOS Apps/Projetos Pessoal/Circle Runner/Circle Runner/GameHander.swift">
    </FileRef>
    <FileRef
-      location = "self:Circle Runner.xcodeproj">
+      location = "group:/Users/matheusamendola/Desktop/iOS Apps/Projetos Pessoal/Circle Runner/Circle Runner/pulse.sks">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
