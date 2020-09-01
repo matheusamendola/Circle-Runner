@@ -21,6 +21,7 @@ class GameScene: SKScene {
     
     var yVelocity: Int = -300
     
+    var pause: SKSpriteNode?
     var scoreLabel: SKLabelNode?
     var currentScore: TimeInterval = 0{
         didSet{
@@ -60,6 +61,7 @@ class GameScene: SKScene {
     }
     
     func createHUD(){
+        pause = self.childNode(withName: "pause") as? SKSpriteNode
         scoreLabel = self.childNode(withName: "score") as? SKLabelNode
         
         currentScore = 0
@@ -122,6 +124,19 @@ class GameScene: SKScene {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let pauseTouch = touches.first{
+            let location = pauseTouch.previousLocation(in: self)
+            let node = self.nodes(at: location).first
+            
+            if node?.name == "pause", let scene = self.scene{
+                if scene.isPaused{
+                    scene.isPaused = false
+                } else {
+                    scene.isPaused = true
+                }
+            }
+        }
+        
         for touch in touches{
             let location = touch.location(in: self)
             if (player?.contains(location))!{

@@ -2,10 +2,13 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/matheusamendola/Desktop/iOS Apps/Projetos Pessoal/Circle Runner/Circle Runner/GameHander.swift">
+      location = "group:GameoverScene.sks">
    </FileRef>
    <FileRef
-      location = "group:/Users/matheusamendola/Desktop/iOS Apps/Projetos Pessoal/Circle Runner/Circle Runner/pulse.sks">
+      location = "group:GameScene.sks">
+   </FileRef>
+   <FileRef
+      location = "group:StartScene.sks">
    </FileRef>
    <FileRef
       location = "self:">
