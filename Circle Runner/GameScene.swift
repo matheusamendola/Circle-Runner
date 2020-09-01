@@ -171,7 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func gameOver(){
-        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        
         GameHander.sharedInstance.saveGameStats()
         print(GameHander.sharedInstance.score)
         
@@ -204,6 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if playerBody.categoryBitMask == playerCategory && otherBody.categoryBitMask == enemyCategory {
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
             gameOver()
         }
         

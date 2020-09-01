@@ -56,6 +56,8 @@ class StartScene: SKScene {
          let node = self.atPoint(pos)
          
          if node == playButton {
+            let generator = UIImpactFeedbackGenerator(style: .soft)
+            generator.impactOccurred()
              let transition = SKTransition.fade(withDuration: 1)
              gameScene = SKScene(fileNamed: "GameScene")
              gameScene.scaleMode = .aspectFit

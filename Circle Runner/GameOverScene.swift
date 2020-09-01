@@ -44,6 +44,8 @@ class GameOverScene: SKScene {
                 if let gameScene = SKScene(fileNamed: "GameScene") {
                 gameScene.scaleMode = .aspectFit
                 self.view?.presentScene(gameScene, transition: transition)
+                let generator = UIImpactFeedbackGenerator(style: .soft)
+                generator.impactOccurred()
                 self.removeAllChildren()
                 }
             }

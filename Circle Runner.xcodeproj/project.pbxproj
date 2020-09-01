@@ -97,9 +97,9 @@
 				E04AAACF24FAB6C400949C2D /* AppDelegate.swift */,
 				E04AAAD724FAB6C400949C2D /* GameViewController.swift */,
 				E0F5421324FEBB040075FE86 /* Game Scenes */,
-				E0217CB324FECE60000AECFE /* GameOverScene.swift */,
 				E04AAAD524FAB6C400949C2D /* GameScene.swift */,
 				E0217CB524FECF7C000AECFE /* StartScene.swift */,
+				E0217CB324FECE60000AECFE /* GameOverScene.swift */,
 				E0753DBB24FEA75400F3EAD3 /* GameHander.swift */,
 				E0217CB024FEBD5C000AECFE /* Sounds */,
 				E0217CAF24FEBCF2000AECFE /* Particles */,
@@ -351,7 +351,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R647JTBWZR;
 				INFOPLIST_FILE = "Circle Runner/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -370,7 +370,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R647JTBWZR;
 				INFOPLIST_FILE = "Circle Runner/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
